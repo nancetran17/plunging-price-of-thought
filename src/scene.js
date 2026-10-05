@@ -214,7 +214,7 @@
     wires += '<path class="pulse" d="' + catenary(x1 + 34, 110, x2 + 34, 110, 44) + '" stroke="#FFFFFF" stroke-width="4" stroke-dasharray="6 46" fill="none" stroke-linecap="round"/>';
     // envelope rides the copper wire
     var e = onCurve(x1 - 34, 110, x2 - 34, 110, 26, 0.35);
-    riders += '<g transform="translate(' + e[0].toFixed(0) + ' ' + (e[1] + 4).toFixed(0) + ')"><rect x="-15" y="0" width="30" height="20" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="2"/><path d="M-15 0 L0 11 L15 0" stroke="' + C.ink + '" stroke-width="2" fill="none"/></g>';
+    riders += '<g transform="translate(' + e[0].toFixed(0) + ' ' + (e[1] + 4).toFixed(0) + ')"><rect x="-15" y="0" width="30" height="20" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="2"/><path d="M-15 0 L0 11 L15 0" stroke="' + C.ink + '" stroke-width="2" fill="none"/>' + (p % 2 ? '' : '<path d="M0 17 l-5 -5 a3 3 0 0 1 5 -4 a3 3 0 0 1 5 4 z" fill="' + C.red + '"/>') + '</g>';
     var m = onCurve(x1, 142, x2, 142, 34, 0.62);
     riders += mono(m[0].toFixed(0), (m[1] + 22).toFixed(0), '·−·· −−−', 15, C.ink, 'text-anchor="middle"');
   }
@@ -365,12 +365,14 @@
   // wrapper gift box
   lo += '<g transform="translate(1966 1214)"><rect x="0" y="16" width="80" height="60" fill="' + C.pink + '" stroke="' + C.ink + '" stroke-width="3"/><rect x="34" y="16" width="12" height="60" fill="' + C.lime + '" stroke="' + C.ink + '" stroke-width="2"/>';
   lo += '<g transform="rotate(-28 0 16)"><rect x="-4" y="2" width="88" height="16" fill="' + C.pink + '" stroke="' + C.ink + '" stroke-width="3"/></g>';
-  lo += '<path d="M8 22 H72" stroke="' + C.ink + '" stroke-width="2" opacity=".4"/>' + mono(40, 58, 'WRAPPER', 9, C.ink, 'text-anchor="middle"') + mono(40, 70, '(EMPTY)', 8, C.ink, 'text-anchor="middle"') + '</g>';
+  lo += '<path d="M8 22 H72" stroke="' + C.ink + '" stroke-width="2" opacity=".4"/>' + mono(40, 46, 'WRAPPER &', 8, C.ink, 'text-anchor="middle"') + mono(40, 58, 'AI HARNESS', 8, C.ink, 'text-anchor="middle"') + mono(40, 70, '(EMPTY)', 8, C.ink, 'text-anchor="middle"') + '</g>';
   a(lo);
   // scarce stuff warehouse
   var wh = '<rect x="2090" y="900" width="258" height="390" fill="' + C.mint + '" stroke="' + C.ink + '" stroke-width="3"/><path d="M2084 900 L2219 852 L2354 900 Z" fill="#5DAF8B" stroke="' + C.ink + '" stroke-width="3" stroke-linejoin="round"/>';
   wh += '<rect x="2112" y="914" width="214" height="40" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="2"/>' + txt(2219, 942, 'SCARCE STUFF', 19, C.ink, 'text-anchor="middle"');
   wh += '<circle cx="2219" cy="1032" r="58" fill="#C9CED6" stroke="' + C.ink + '" stroke-width="4"/><circle cx="2219" cy="1032" r="40" fill="none" stroke="' + C.ink + '" stroke-width="2"/><circle cx="2219" cy="1032" r="10" fill="' + C.ink + '"/>';
+  wh += txt(2219, 966, 'N', 13, C.ink, 'text-anchor="middle"') + txt(2219, 1110, 'S', 13, C.ink, 'text-anchor="middle"') + txt(2287, 1037, 'E', 13, C.ink, 'text-anchor="middle"') + txt(2151, 1037, 'W', 13, C.ink, 'text-anchor="middle"');
+  wh += '<path d="M2219 990 L2228 1032 L2219 1074 L2210 1032 Z" fill="' + C.red + '" stroke="' + C.ink + '" stroke-width="2" class="needle" style="transform-origin:2219px 1032px"/>';
   for (var vs = 0; vs < 6; vs++) { var va = vs * Math.PI / 3; wh += '<line x1="2219" y1="1032" x2="' + (2219 + Math.cos(va) * 34).toFixed(1) + '" y2="' + (1032 + Math.sin(va) * 34).toFixed(1) + '" stroke="' + C.ink + '" stroke-width="3"/>'; }
   var crates = [['DATA', 2104, 1170, C.mus], ['ENERGY', 2186, 1170, C.red], ['TRUST', 2268, 1170, C.cyan], ['PERMITS', 2120, 1110, C.lilac], ['CHIPS', 2206, 1110, C.lime], ['LAND', 2270, 1110, C.pink]];
   crates.forEach(function (q) {
@@ -396,6 +398,28 @@
   a(ho);
   // robot heading to work
   a('<g transform="translate(2420 1196)"><line x1="30" y1="0" x2="30" y2="-18" stroke="' + C.ink + '" stroke-width="3"/><circle cx="30" cy="-22" r="5" fill="' + C.red + '" class="blinkFast"/><rect x="8" y="0" width="44" height="34" rx="8" fill="#DDE3EA" stroke="' + C.ink + '" stroke-width="3"/><circle cx="22" cy="16" r="5" fill="' + C.cyan + '"/><circle cx="38" cy="16" r="5" fill="' + C.cyan + '"/><rect x="2" y="38" width="56" height="40" rx="6" fill="' + C.mus + '" stroke="' + C.ink + '" stroke-width="3"/><path d="M58 50 l18 -8 l6 8" stroke="' + C.ink + '" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="74" y="30" width="22" height="18" fill="#D9A574" stroke="' + C.ink + '" stroke-width="2"/><circle cx="16" cy="88" r="7" fill="' + C.ink + '"/><circle cx="44" cy="88" r="7" fill="' + C.ink + '"/></g>');
+
+
+  /* ---------- final-draft additions ---------- */
+  // Mama Tran's real-estate dream: a little house for sale
+  a('<g><path d="M4 1240 L32 1214 L60 1240 Z" fill="' + C.redD + '" stroke="' + C.ink + '" stroke-width="2.5" stroke-linejoin="round"/><rect x="10" y="1240" width="44" height="50" fill="' + C.peach + '" stroke="' + C.ink + '" stroke-width="2.5"/><rect x="26" y="1262" width="14" height="28" fill="' + C.vioD + '"/><rect x="14" y="1248" width="10" height="10" fill="#FFE07A" stroke="' + C.ink + '" stroke-width="1.5"/>' +
+    '<line x1="44" y1="1290" x2="44" y2="1178" stroke="' + C.ink + '" stroke-width="3"/><g transform="translate(14 1150) rotate(-4)"><rect x="0" y="0" width="58" height="30" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="2"/>' + mono(29, 13, 'FOR', 9, C.red, 'text-anchor="middle"') + mono(29, 25, 'SALE', 9, C.red, 'text-anchor="middle"') + '</g></g>');
+  // dark fibre: a bundle of cable, almost none of it lit
+  var df = '<g opacity=".95">';
+  for (var fb = 0; fb < 12; fb++) df += '<path d="' + catenary(1150, 300 + fb * 2, 1590, 300 + fb * 2, 70 + fb * 3) + '" stroke="' + (fb === 6 ? C.cyan : (fb % 2 ? '#3E3858' : '#55507A')) + '" stroke-width="' + (fb === 6 ? 3.5 : 2.4) + '" fill="none"/>';
+  df += '<path class="pulse" d="' + catenary(1150, 312, 1590, 312, 88) + '" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="6 46" fill="none" stroke-linecap="round"/>';
+  df += '<g transform="translate(1300 500) rotate(-3)"><rect x="0" y="0" width="150" height="44" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="3"/>' + txt(75, 22, 'DARK FIBER', 15, C.ink, 'text-anchor="middle"') + mono(75, 37, 'ONLY 2–5% LIT · 2002', 9, C.red, 'text-anchor="middle"') + '</g><line x1="1375" y1="466" x2="1375" y2="500" stroke="' + C.ink + '" stroke-width="2"/></g>';
+  a(df);
+  // a cable drum nobody wants, parked by the broken span
+  a('<g><circle cx="1556" cy="756" r="30" fill="' + C.brown + '" stroke="' + C.ink + '" stroke-width="3"/><circle cx="1556" cy="756" r="20" fill="#3E3858"/><circle cx="1556" cy="756" r="20" fill="none" stroke="#55507A" stroke-width="2" stroke-dasharray="4 3"/><circle cx="1556" cy="756" r="6" fill="' + C.cream + '" stroke="' + C.ink + '" stroke-width="2"/>' +
+    '<g transform="translate(1516 690) rotate(5)"><rect x="0" y="0" width="84" height="30" fill="' + C.mus + '" stroke="' + C.ink + '" stroke-width="2"/>' + mono(42, 12, 'BANDWIDTH', 8, C.ink, 'text-anchor="middle"') + mono(42, 24, 'GOING CHEAP', 8, C.red, 'text-anchor="middle"') + '</g></g>');
+  // the moat in front of the scarce stuff
+  a('<g><rect x="2086" y="1286" width="270" height="30" rx="12" fill="' + C.cyan + '" stroke="' + C.ink + '" stroke-width="2.5"/><path d="M2100 1300 q10 -6 20 0 t20 0 t20 0 M2190 1306 q10 -6 20 0 t20 0 t20 0 M2280 1298 q10 -6 20 0 t20 0" stroke="#E6FBFF" stroke-width="2" fill="none" class="wave"/>' +
+    '<rect x="2196" y="1284" width="46" height="10" fill="' + C.brown + '" stroke="' + C.ink + '" stroke-width="2"/><line x1="2330" y1="1290" x2="2330" y2="1250" stroke="' + C.ink + '" stroke-width="3"/><rect x="2306" y="1232" width="48" height="20" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="2"/>' + mono(2330, 1246, 'MOAT', 10, C.ink, 'text-anchor="middle"') + '</g>');
+  // a bin for the AI slop
+  a('<g transform="translate(1878 1236)"><path d="M0 8 H46 L41 54 H5 Z" fill="#9A90B4" stroke="' + C.ink + '" stroke-width="2.5"/><rect x="-3" y="2" width="52" height="8" rx="3" fill="#B4ABC9" stroke="' + C.ink + '" stroke-width="2"/><circle cx="12" cy="-2" r="7" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="1.5"/><circle cx="30" cy="-4" r="8" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="1.5"/><circle cx="22" cy="-8" r="6" fill="' + C.paper + '" stroke="' + C.ink + '" stroke-width="1.5"/>' + mono(23, 30, 'AI', 9, C.ink, 'text-anchor="middle"') + mono(23, 42, 'SLOP', 9, C.ink, 'text-anchor="middle"') + '</g>');
+  // Drucker's sign over the stalls
+  a('<g transform="translate(2112 446) rotate(2)"><line x1="20" y1="-30" x2="20" y2="0" stroke="' + C.ink + '" stroke-width="2"/><line x1="230" y1="-30" x2="230" y2="0" stroke="' + C.ink + '" stroke-width="2"/><rect x="0" y="0" width="250" height="52" fill="' + C.lime + '" stroke="' + C.ink + '" stroke-width="3"/>' + txt(125, 24, 'IDEAS ARE CHEAP', 17, C.ink, 'text-anchor="middle"') + mono(125, 42, 'EXECUTION IS EXPENSIVE', 11, C.redD, 'text-anchor="middle"') + '</g>');
 
   /* ---------- road traffic ---------- */
   function car(col, w, label) {
